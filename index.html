@@ -1,0 +1,4346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blossom Perfume - Роскошные ароматы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Розовая палитра */
+            --pink-light: #FFF5F7;
+            --pink-soft: #FFE4E6;
+            --pink-medium: #F9A8D4;
+            --pink-bold: #F472B6;
+            --pink-dark: #DB2777;
+            --pink-deep: #BE185D;
+            --gold-light: #FDE68A;
+            --gold-medium: #FBBF24;
+            --text-dark: #4A5568;
+            --text-light: #718096;
+            --white: #FFFFFF;
+            --shadow-light: 0 10px 30px rgba(244, 114, 182, 0.15);
+            --shadow-medium: 0 15px 40px rgba(244, 114, 182, 0.2);
+            --gradient-pink: linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%);
+            --gradient-gold: linear-gradient(135deg, #FDE68A 0%, #FBBF24 100%);
+            --border-light: 1px solid rgba(244, 114, 182, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--pink-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Декоративные элементы */
+        .floral-decoration {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .floral-decoration {
+                display: block;
+            }
+        }
+
+        .floral-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 120px;
+            color: var(--pink-medium);
+            transform: rotate(-15deg);
+        }
+
+        .floral-2 {
+            bottom: 20%;
+            right: 5%;
+            font-size: 150px;
+            color: var(--pink-medium);
+            transform: rotate(20deg);
+        }
+
+        /* Header - АДАПТИВНЫЙ */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink-deep);
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(244, 114, 182, 0.3);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--pink-deep), var(--pink-bold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        @media (min-width: 768px) {
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+        }
+
+        /* Навигация - АДАПТИВНАЯ */
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--pink-deep);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            display: block;
+        }
+
+        @media (min-width: 992px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        @media (max-width: 991px) {
+            .nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 20px;
+                flex-direction: column;
+                gap: 0;
+                box-shadow: var(--shadow-medium);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 999;
+                display: none;
+            }
+            
+            .nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 991px) {
+            .nav-link {
+                padding: 15px;
+                border-bottom: 1px solid var(--pink-soft);
+            }
+            
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .nav-link:hover {
+            color: var(--pink-deep);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-pink);
+            transition: width 0.3s ease;
+        }
+
+        @media (min-width: 992px) {
+            .nav-link:hover::after {
+                width: 100%;
+            }
+        }
+
+        /* Кнопки управления - АДАПТИВНЫЕ */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .header-controls {
+                gap: 15px;
+            }
+        }
+
+        .control-btn {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--pink-soft);
+            color: var(--text-dark);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .control-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        .control-btn:hover {
+            background: var(--pink-soft);
+            color: var(--pink-deep);
+            transform: translateY(-2px);
+            border-color: var(--pink-medium);
+            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.2);
+        }
+
+        .control-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--pink-deep);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 10px;
+            min-width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Всплывающие панели - АДАПТИВНЫЕ */
+        .control-panel {
+            position: fixed;
+            top: 80px;
+            left: 15px;
+            right: 15px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: var(--border-light);
+            max-height: calc(100vh - 100px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .control-panel {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                left: auto;
+                min-width: 350px;
+                max-width: 400px;
+            }
+        }
+
+        .control-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .panel-header {
+            padding: 15px 20px;
+            border-bottom: var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--gradient-pink);
+            border-radius: 20px 20px 0 0;
+            flex-shrink: 0;
+        }
+
+        .panel-header h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--pink-deep);
+            font-size: 18px;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .panel-header h3 {
+                font-size: 20px;
+            }
+        }
+
+        .panel-close {
+            background: none;
+            border: none;
+            color: var(--pink-deep);
+            font-size: 18px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .panel-close:hover {
+            background: var(--white);
+            transform: rotate(90deg);
+        }
+
+        .panel-body {
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        @media (min-width: 768px) {
+            .panel-body {
+                padding: 20px;
+            }
+        }
+
+        .panel-empty {
+            text-align: center;
+            padding: 30px 15px;
+            color: var(--text-light);
+        }
+
+        @media (min-width: 768px) {
+            .panel-empty {
+                padding: 40px 20px;
+            }
+        }
+
+        .panel-empty i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--pink-medium);
+            opacity: 0.5;
+        }
+
+        @media (min-width: 768px) {
+            .panel-empty i {
+                font-size: 48px;
+            }
+        }
+
+        .panel-empty p {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Поисковая панель */
+        .search-panel .panel-body {
+            padding: 0;
+        }
+
+        .search-input-container {
+            padding: 15px;
+            border-bottom: var(--border-light);
+        }
+
+        @media (min-width: 768px) {
+            .search-input-container {
+                padding: 20px;
+            }
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid var(--pink-soft);
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        @media (min-width: 768px) {
+            .search-input {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--pink-medium);
+            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .search-results {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            border-bottom: var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .search-result-item {
+                gap: 15px;
+                padding: 15px 20px;
+            }
+        }
+
+        .search-result-item:hover {
+            background: var(--pink-soft);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--gradient-pink);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .search-result-image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .search-result-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .search-result-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .search-result-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 768px) {
+            .search-result-name {
+                font-size: 16px;
+            }
+        }
+
+        .search-result-price {
+            color: var(--pink-deep);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .search-result-price {
+                font-size: 18px;
+            }
+        }
+
+        /* Панель избранного */
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: var(--border-light);
+        }
+
+        @media (min-width: 768px) {
+            .wishlist-item {
+                gap: 15px;
+                padding: 15px 0;
+            }
+        }
+
+        .wishlist-item:last-child {
+            border-bottom: none;
+        }
+
+        .wishlist-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--gradient-pink);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .wishlist-item-image {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        .wishlist-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .wishlist-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .wishlist-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 768px) {
+            .wishlist-item-name {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+        }
+
+        .wishlist-item-price {
+            color: var(--pink-deep);
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .wishlist-item-price {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+        }
+
+        .wishlist-item-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 768px) {
+            .wishlist-item-actions {
+                gap: 10px;
+            }
+        }
+
+        /* Панель корзины */
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: var(--border-light);
+        }
+
+        @media (min-width: 768px) {
+            .cart-item {
+                gap: 15px;
+                padding: 15px 0;
+            }
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--gradient-pink);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .cart-item-image {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 768px) {
+            .cart-item-name {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+        }
+
+        .cart-item-price {
+            color: var(--pink-deep);
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .cart-item-price {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .cart-item-quantity {
+                gap: 10px;
+            }
+        }
+
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--pink-soft);
+            border: none;
+            color: var(--pink-deep);
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .quantity-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+        }
+
+        .quantity-btn:hover {
+            background: var(--pink-medium);
+            transform: scale(1.1);
+        }
+
+        .quantity-value {
+            min-width: 25px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            .quantity-value {
+                min-width: 30px;
+                font-size: 16px;
+            }
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .cart-item-remove {
+                font-size: 18px;
+                margin-left: 10px;
+            }
+        }
+
+        .cart-item-remove:hover {
+            color: var(--pink-deep);
+            transform: scale(1.2);
+        }
+
+        .cart-total {
+            padding: 15px;
+            border-top: var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--pink-soft);
+            border-radius: 0 0 20px 20px;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .cart-total {
+                padding: 20px;
+            }
+        }
+
+        .total-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .total-label {
+                font-size: 18px;
+            }
+        }
+
+        .total-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--pink-deep);
+        }
+
+        @media (min-width: 768px) {
+            .total-value {
+                font-size: 24px;
+            }
+        }
+
+        .cart-actions {
+            padding: 15px;
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .cart-actions {
+                padding: 0 20px 20px;
+                gap: 10px;
+            }
+        }
+
+        .cart-actions .btn {
+            flex: 1;
+            justify-content: center;
+        }
+
+        /* Панель профиля */
+        .profile-header {
+            padding: 15px;
+            text-align: center;
+            border-bottom: var(--border-light);
+        }
+
+        @media (min-width: 768px) {
+            .profile-header {
+                padding: 20px;
+            }
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--gradient-pink);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--pink-deep);
+            font-weight: 600;
+        }
+
+        @media (min-width: 768px) {
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
+        }
+
+        .profile-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-name {
+                font-size: 22px;
+            }
+        }
+
+        .profile-email {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-email {
+                font-size: 14px;
+            }
+        }
+
+        .profile-menu {
+            padding: 10px 0;
+        }
+
+        .profile-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            margin: 0 10px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-menu-item {
+                gap: 15px;
+                padding: 15px 20px;
+            }
+        }
+
+        .profile-menu-item:hover {
+            background: var(--pink-soft);
+            color: var(--pink-deep);
+            transform: translateX(5px);
+        }
+
+        .profile-menu-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-menu-item i {
+                font-size: 18px;
+            }
+        }
+
+        /* Hero Section - АДАПТИВНЫЙ */
+        .hero {
+            padding: 60px 0;
+            background: var(--gradient-pink);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 80px 0;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .hero {
+                padding: 100px 0;
+            }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f472b6' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .hero .container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 992px) {
+            .hero .container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+            }
+        }
+
+        .hero-content {
+            max-width: 100%;
+            text-align: center;
+        }
+
+        @media (min-width: 992px) {
+            .hero-content {
+                max-width: 600px;
+                text-align: left;
+            }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--pink-deep), var(--pink-bold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 40px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .hero-title {
+                font-size: 48px;
+                margin-bottom: 24px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .hero-title {
+                font-size: 56px;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 18px;
+                margin-bottom: 35px;
+                line-height: 1.7;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .hero-subtitle {
+                font-size: 20px;
+                margin-bottom: 40px;
+                line-height: 1.8;
+            }
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-actions {
+                flex-direction: row;
+                gap: 20px;
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .hero-actions {
+                justify-content: flex-start;
+            }
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .btn {
+                width: auto;
+                padding: 16px 32px;
+                font-size: 16px;
+            }
+        }
+
+        .btn-primary {
+            background: var(--gradient-pink);
+            color: var(--pink-deep);
+            box-shadow: 0 8px 25px rgba(244, 114, 182, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(244, 114, 182, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--pink-deep);
+            border: 2px solid var(--pink-medium);
+        }
+
+        .btn-outline:hover {
+            background: var(--pink-soft);
+            transform: translateY(-3px);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .btn-large {
+                padding: 20px 40px;
+                font-size: 18px;
+            }
+        }
+
+        /* Центральный каталог - АДАПТИВНЫЙ */
+        .center-catalog {
+            background: var(--white);
+            border-radius: 20px;
+            border: var(--border-light);
+            padding: 30px 20px;
+            margin: 60px auto;
+            max-width: 1400px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .center-catalog {
+                padding: 50px;
+                margin: 80px auto;
+                border-radius: 30px;
+            }
+        }
+
+        .center-catalog::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-pink);
+        }
+
+        .catalog-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .catalog-header {
+                margin-bottom: 50px;
+            }
+        }
+
+        .catalog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(45deg, var(--pink-deep), var(--pink-bold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @media (min-width: 768px) {
+            .catalog-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .catalog-title {
+                font-size: 42px;
+                margin-bottom: 16px;
+            }
+        }
+
+        .catalog-subtitle {
+            font-size: 16px;
+            color: var(--text-light);
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .catalog-subtitle {
+                font-size: 17px;
+                max-width: 600px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .catalog-subtitle {
+                font-size: 18px;
+            }
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .catalog-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+                margin-bottom: 35px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .catalog-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+        }
+
+        .catalog-section {
+            background: var(--pink-soft);
+            border-radius: 15px;
+            border: var(--border-light);
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .catalog-section {
+                border-radius: 20px;
+                padding: 25px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .catalog-section {
+                padding: 30px;
+            }
+        }
+
+        .catalog-section:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .catalog-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-pink);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: var(--border-light);
+        }
+
+        @media (min-width: 768px) {
+            .section-header {
+                gap: 15px;
+                margin-bottom: 25px;
+                padding-bottom: 15px;
+            }
+        }
+
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-pink);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink-deep);
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .section-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            flex: 1;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .section-title {
+                font-size: 22px;
+            }
+        }
+
+        .section-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .section-items {
+                gap: 12px;
+            }
+        }
+
+        .catalog-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid transparent;
+        }
+
+        @media (min-width: 768px) {
+            .catalog-item {
+                gap: 15px;
+                padding: 14px 20px;
+                border-radius: 12px;
+            }
+        }
+
+        .catalog-item:hover {
+            background: var(--white);
+            border-color: var(--pink-medium);
+            transform: translateX(5px);
+        }
+
+        .catalog-item.active {
+            background: var(--gradient-pink);
+            color: var(--pink-deep);
+            border-color: var(--pink-medium);
+        }
+
+        .item-icon {
+            color: var(--pink-bold);
+            font-size: 14px;
+            width: 20px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .item-icon {
+                font-size: 16px;
+                width: 24px;
+            }
+        }
+
+        .item-text {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .item-text {
+                font-size: 15px;
+            }
+        }
+
+        .item-badge {
+            background: var(--pink-deep);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 20px;
+            min-width: 25px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(219, 39, 119, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .item-badge {
+                font-size: 12px;
+                padding: 4px 10px;
+                min-width: 30px;
+            }
+        }
+
+        /* Быстрые фильтры */
+        .quick-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        @media (min-width: 768px) {
+            .quick-filters {
+                gap: 15px;
+                margin: 40px 0;
+            }
+        }
+
+        .quick-filter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--white);
+            border: 2px solid var(--pink-soft);
+            border-radius: 50px;
+            color: var(--text-dark);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .quick-filter {
+                gap: 10px;
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+        }
+
+        .quick-filter:hover {
+            border-color: var(--pink-medium);
+            transform: translateY(-2px);
+        }
+
+        .quick-filter.active {
+            background: var(--gradient-pink);
+            color: var(--pink-deep);
+            border-color: var(--pink-medium);
+            box-shadow: 0 5px 20px rgba(244, 114, 182, 0.2);
+        }
+
+        .filter-icon {
+            font-size: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .filter-icon {
+                font-size: 14px;
+            }
+        }
+
+        /* Статистика */
+        .catalog-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: var(--border-light);
+        }
+
+        @media (min-width: 768px) {
+            .catalog-stats {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 25px;
+                margin-top: 50px;
+                padding-top: 40px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .catalog-stats {
+                gap: 30px;
+            }
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: var(--pink-soft);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .stat-item {
+                padding: 20px;
+                border-radius: 15px;
+            }
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--pink-deep);
+            margin-bottom: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .stat-value {
+                font-size: 32px;
+                margin-bottom: 8px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .stat-value {
+                font-size: 36px;
+            }
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (min-width: 768px) {
+            .stat-label {
+                font-size: 14px;
+            }
+        }
+
+        /* Секция товаров - АДАПТИВНАЯ */
+        .catalog-section-main {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        @media (min-width: 768px) {
+            .catalog-section-main {
+                padding: 80px 0;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .catalog-section-main {
+                padding: 100px 0;
+            }
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(45deg, var(--pink-deep), var(--pink-bold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .section-title {
+                font-size: 48px;
+                margin-bottom: 50px;
+            }
+        }
+
+        /* Фильтры */
+        .filter-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--pink-soft);
+            border-radius: 15px;
+            border: var(--border-light);
+        }
+
+        @media (min-width: 768px) {
+            .filter-bar {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 25px;
+                border-radius: 20px;
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .filter-bar {
+                padding: 30px;
+                margin-bottom: 50px;
+            }
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .filter-tags {
+                gap: 15px;
+                justify-content: flex-start;
+            }
+        }
+
+        .filter-tag {
+            padding: 10px 20px;
+            background: var(--white);
+            border: 2px solid var(--pink-medium);
+            color: var(--pink-deep);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .filter-tag {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+        }
+
+        .filter-tag:hover {
+            background: var(--pink-soft);
+            transform: translateY(-2px);
+        }
+
+        .filter-tag.active {
+            background: var(--gradient-pink);
+            color: var(--pink-deep);
+            box-shadow: 0 5px 20px rgba(244, 114, 182, 0.2);
+        }
+
+        .sort-select {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: 2px solid var(--pink-medium);
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .sort-select {
+                width: auto;
+                min-width: 250px;
+                padding: 12px 20px;
+                gap: 12px;
+            }
+        }
+
+        .sort-select select {
+            background: none;
+            border: none;
+            color: var(--pink-deep);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .sort-select select {
+                font-size: 15px;
+            }
+        }
+
+        .sort-select select:focus {
+            outline: none;
+        }
+
+        /* Карточки товаров - АДАПТИВНЫЕ */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 576px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            border: var(--border-light);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .product-card {
+                border-radius: 20px;
+            }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .product-image {
+            height: 200px;
+            background: var(--gradient-pink);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .product-image {
+                height: 250px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .product-image {
+                height: 280px;
+            }
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--pink-deep);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .product-badge {
+                top: 20px;
+                right: 20px;
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%);
+        }
+
+        .image-placeholder i {
+            font-size: 50px;
+            color: var(--pink-deep);
+            opacity: 0.7;
+        }
+
+        @media (min-width: 768px) {
+            .image-placeholder i {
+                font-size: 70px;
+            }
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .product-content {
+                padding: 25px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .product-content {
+                padding: 30px;
+            }
+        }
+
+        .product-category {
+            color: var(--pink-bold);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .product-category {
+                font-size: 13px;
+                letter-spacing: 2px;
+                margin-bottom: 12px;
+            }
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .product-name {
+                font-size: 20px;
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .product-name {
+                font-size: 22px;
+            }
+        }
+
+        .product-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .product-desc {
+                font-size: 15px;
+                margin-bottom: 20px;
+                line-height: 1.7;
+            }
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--pink-deep);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .product-price {
+                font-size: 28px;
+                margin-bottom: 25px;
+                gap: 10px;
+            }
+        }
+
+        .product-price::before {
+            content: '€';
+            font-size: 18px;
+            color: var(--pink-bold);
+        }
+
+        @media (min-width: 768px) {
+            .product-price::before {
+                font-size: 20px;
+            }
+        }
+
+        .product-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .product-actions {
+                flex-direction: row;
+                gap: 12px;
+            }
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 14px;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .btn-small {
+                padding: 12px 24px;
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background: var(--pink-soft);
+        }
+
+        @media (min-width: 768px) {
+            .features {
+                padding: 80px 0;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .features {
+                padding: 100px 0;
+            }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
+            }
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            border: var(--border-light);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .feature-card {
+                border-radius: 20px;
+                padding: 35px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .feature-card {
+                padding: 40px;
+            }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-pink);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: var(--pink-deep);
+            box-shadow: 0 8px 25px rgba(244, 114, 182, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+                margin-bottom: 25px;
+            }
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        @media (min-width: 768px) {
+            .feature-card h3 {
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .feature-card h3 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+            .feature-card p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+        }
+
+        /* Отзывы */
+        .testimonials {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        @media (min-width: 768px) {
+            .testimonials {
+                padding: 80px 0;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .testimonials {
+                padding: 100px 0;
+            }
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--pink-soft);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: var(--border-light);
+            margin: 0 15px;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-card {
+                border-radius: 25px;
+                padding: 40px;
+                margin: 0 20px;
+            }
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-text {
+                font-size: 18px;
+                line-height: 1.8;
+                margin-bottom: 30px;
+            }
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 40px;
+            color: var(--pink-medium);
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .testimonial-text::before {
+            top: -15px;
+            left: -5px;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-text::before {
+                top: -20px;
+                left: -10px;
+            }
+        }
+
+        .testimonial-text::after {
+            bottom: -30px;
+            right: -5px;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-text::after {
+                bottom: -40px;
+                right: -10px;
+            }
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink-deep);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 768px) {
+            .author-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+
+        .author-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .author-info h4 {
+                font-size: 18px;
+            }
+        }
+
+        .author-info p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        @media (min-width: 768px) {
+            .author-info p {
+                font-size: 14px;
+            }
+        }
+
+        /* Footer - АДАПТИВНЫЙ */
+        .footer {
+            background: var(--text-dark);
+            padding: 50px 0 30px;
+            color: var(--white);
+        }
+
+        @media (min-width: 768px) {
+            .footer {
+                padding: 60px 0 40px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer {
+                padding: 80px 0 40px;
+            }
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 45px;
+                margin-bottom: 50px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 50px;
+                margin-bottom: 60px;
+            }
+        }
+
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--pink-soft);
+        }
+
+        @media (min-width: 768px) {
+            .footer-col h3 {
+                font-size: 19px;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer-col h3 {
+                font-size: 20px;
+            }
+        }
+
+        .footer-text {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 15px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (min-width: 768px) {
+            .footer-text {
+                font-size: 15px;
+                line-height: 1.7;
+                margin: 20px 0;
+            }
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .social-links {
+                gap: 15px;
+                margin-top: 25px;
+            }
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        .social-links a:hover {
+            background: var(--pink-deep);
+            transform: translateY(-3px);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-col li {
+                margin-bottom: 15px;
+            }
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-col a {
+                font-size: 15px;
+                gap: 10px;
+            }
+        }
+
+        .footer-col a:hover {
+            color: var(--pink-soft);
+            transform: translateX(5px);
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (min-width: 768px) {
+            .contact-list li {
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .contact-list i {
+            color: var(--pink-soft);
+            font-size: 16px;
+            width: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-list i {
+                font-size: 18px;
+                width: 24px;
+            }
+        }
+
+        .newsletter h4 {
+            font-size: 15px;
+            margin-bottom: 15px;
+            color: var(--pink-soft);
+        }
+
+        @media (min-width: 768px) {
+            .newsletter h4 {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .newsletter-form {
+                gap: 10px;
+            }
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            .newsletter-form input {
+                padding: 15px 20px;
+                font-size: 15px;
+            }
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--pink-soft);
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                padding-top: 40px;
+                font-size: 14px;
+            }
+        }
+
+        .footer-bottom p {
+            margin-bottom: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom p {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .modal {
+                padding: 20px;
+            }
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            animation: modalAppear 0.4s ease;
+        }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                border-radius: 30px;
+            }
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--pink-soft);
+            border: none;
+            color: var(--pink-deep);
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .modal-close {
+                top: 25px;
+                right: 25px;
+                font-size: 28px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        .modal-close:hover {
+            background: var(--pink-medium);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .modal-body {
+                padding: 40px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .modal-body {
+                padding: 50px;
+            }
+        }
+
+        /* Галерея в модальном окне */
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (min-width: 992px) {
+            .modal-gallery {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .modal-gallery {
+                gap: 50px;
+            }
+        }
+
+        .modal-image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--gradient-pink);
+            height: 300px;
+        }
+
+        @media (min-width: 768px) {
+            .modal-image-container {
+                border-radius: 20px;
+                height: 350px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .modal-image-container {
+                height: 400px;
+            }
+        }
+
+        .modal-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            padding: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .modal-image-container img {
+                padding: 20px;
+            }
+        }
+
+        .product-thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .product-thumbnails {
+                gap: 15px;
+                margin-top: 20px;
+            }
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            background: var(--pink-soft);
+        }
+
+        @media (min-width: 768px) {
+            .thumbnail {
+                width: 70px;
+                height: 70px;
+                border-radius: 10px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .thumbnail {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        .thumbnail:hover {
+            transform: translateY(-3px);
+            border-color: var(--pink-medium);
+        }
+
+        .thumbnail.active {
+            border-color: var(--pink-deep);
+            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.3);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Анимация загрузки */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Стили для уведомлений */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Декоративные элементы -->
+    <div class="floral-decoration floral-1">
+        <i class="fas fa-pagelines"></i>
+    </div>
+    <div class="floral-decoration floral-2">
+        <i class="fas fa-spa"></i>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-spray-can-sparkles"></i>
+                </div>
+                <div class="logo-text">Blossom Perfume</div>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav" id="mainNav">
+                <a href="#home" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="#catalog" class="nav-link">
+                    <i class="fas fa-list"></i> Каталог
+                </a>
+                <a href="#testimonials" class="nav-link">
+                    <i class="fas fa-comment"></i> Отзывы
+                </a>
+                <a href="#features" class="nav-link">
+                    <i class="fas fa-star"></i> Преимущества
+                </a>
+                <a href="#contact" class="nav-link">
+                    <i class="fas fa-envelope"></i> Контакты
+                </a>
+            </nav>
+
+            <!-- Кнопки управления -->
+            <div class="header-controls">
+                <button class="control-btn" id="searchBtn" title="Поиск">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="control-btn" id="wishlistBtn" title="Избранное">
+                    <i class="fas fa-heart"></i>
+                    <span class="control-badge" id="wishlistCount">0</span>
+                </button>
+                <button class="control-btn" id="cartBtn" title="Корзина">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="control-badge" id="cartCount">0</span>
+                </button>
+                <button class="control-btn" id="profileBtn" title="Профиль">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
+
+            <!-- Всплывающие панели -->
+            <div class="control-panel search-panel" id="searchPanel">
+                <div class="panel-header">
+                    <h3>Поиск ароматов</h3>
+                    <button class="panel-close" id="closeSearch">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div class="search-input-container">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Введите название аромата...">
+                    </div>
+                    <div class="search-results" id="searchResults">
+                        <div class="panel-empty">
+                            <i class="fas fa-search"></i>
+                            <p>Начните вводить название аромата</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-panel" id="wishlistPanel">
+                <div class="panel-header">
+                    <h3>Избранное</h3>
+                    <button class="panel-close" id="closeWishlist">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="panel-body" id="wishlistItems">
+                    <div class="panel-empty">
+                        <i class="fas fa-heart"></i>
+                        <p>Ваше избранное пусто</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-panel" id="cartPanel">
+                <div class="panel-header">
+                    <h3>Корзина</h3>
+                    <button class="panel-close" id="closeCart">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="panel-body" id="cartItems">
+                    <div class="panel-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>Ваша корзина пуста</p>
+                    </div>
+                </div>
+                <div class="cart-total" style="display: none;">
+                    <div class="total-label">Итого:</div>
+                    <div class="total-value" id="cartTotal">0€</div>
+                </div>
+                <div class="cart-actions" style="display: none;">
+                    <button class="btn btn-outline" id="clearCart">
+                        Очистить
+                    </button>
+                    <button class="btn btn-primary" id="checkoutBtn">
+                        Оформить заказ
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-panel" id="profilePanel">
+                <div class="panel-header">
+                    <h3>Мой профиль</h3>
+                    <button class="panel-close" id="closeProfile">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div class="profile-header">
+                        <div class="profile-avatar">КК</div>
+                        <div class="profile-name">Ксения Костикова</div>
+                        <div class="profile-email">Ksenya@blossom-perfume.by</div>
+                    </div>
+                    <div class="profile-menu">
+                        <a href="#" class="profile-menu-item">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Мой профиль</span>
+                        </a>
+                        <a href="#" class="profile-menu-item">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Мои заказы</span>
+                        </a>
+                        <a href="#" class="profile-menu-item" id="profileWishlistBtn">
+                            <i class="fas fa-heart"></i>
+                            <span>Избранное</span>
+                            <span class="control-badge" style="position: static; margin-left: auto;" id="profileWishlistCount">0</span>
+                        </a>
+                        <a href="#" class="profile-menu-item" id="profileCartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Корзина</span>
+                            <span class="control-badge" style="position: static; margin-left: auto;" id="profileCartCount">0</span>
+                        </a>
+                        <a href="#" class="profile-menu-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                        <a href="#" class="profile-menu-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Выйти</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">
+                    Ароматы, которые <br>говорят за вас
+                </h1>
+                <p class="hero-subtitle">
+                    Откройте для себя мир изысканных парфюмов, созданных с любовью и вниманием к деталям. 
+                    Каждый аромат — это история, которую вы можете носить с собой.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large" id="goToCatalog">
+                        <i class="fas fa-shopping-bag"></i> В каталог
+                    </button>
+                    <button class="btn btn-outline btn-large" id="watchVideo">
+                        <i class="fas fa-play-circle"></i> Видео о нас
+                    </button>
+                </div>
+            </div>
+            <div class="fade-in delay-1">
+                <!-- Изображение парфюма для мобильных -->
+                <div style="max-width: 300px; margin: 0 auto;">
+                    <div style="height: 350px; border-radius: 20px; overflow: hidden; background: var(--gradient-pink);">
+                        <img src="https://i.ebayimg.com/images/g/UBEAAOSwKLRkbk~j/s-l960.jpg" alt="Парфюм Blossom Perfume" style="width: 100%; height: 100%; object-fit: contain; padding: 20px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Центральный каталог -->
+    <div class="center-catalog">
+        <div class="catalog-header fade-in">
+            <h2 class="catalog-title">Найдите свой аромат</h2>
+            <p class="catalog-subtitle">Исследуйте нашу коллекцию по категориям, коллекциям или нотам</p>
+        </div>
+
+        <div class="catalog-grid">
+            <!-- Категории -->
+            <div class="catalog-section fade-in delay-1">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="section-title">Категории</div>
+                </div>
+                <div class="section-items">
+                    <a href="#" class="catalog-item active" data-filter="all">
+                        <i class="fas fa-star item-icon"></i>
+                        <span class="item-text">Все ароматы</span>
+                        <span class="item-badge">36</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-filter="women">
+                        <i class="fas fa-venus item-icon"></i>
+                        <span class="item-text">Женские</span>
+                        <span class="item-badge">15</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-filter="men">
+                        <i class="fas fa-mars item-icon"></i>
+                        <span class="item-text">Мужские</span>
+                        <span class="item-badge">12</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-filter="unisex">
+                        <i class="fas fa-venus-mars item-icon"></i>
+                        <span class="item-text">Унисекс</span>
+                        <span class="item-badge">9</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Коллекции -->
+            <div class="catalog-section fade-in delay-2">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="section-title">Коллекции</div>
+                </div>
+                <div class="section-items">
+                    <a href="#" class="catalog-item" data-collection="rose">
+                        <i class="fas fa-rose item-icon"></i>
+                        <span class="item-text">Розовая коллекция</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-collection="noir">
+                        <i class="fas fa-moon item-icon"></i>
+                        <span class="item-text">Noir Edition</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-collection="fresh">
+                        <i class="fas fa-leaf item-icon"></i>
+                        <span class="item-text">Fresh & Clean</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-collection="oriental">
+                        <i class="fas fa-fire item-icon"></i>
+                        <span class="item-text">Oriental Dreams</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- По цене -->
+            <div class="catalog-section fade-in delay-3">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <div class="section-title">По цене</div>
+                </div>
+                <div class="section-items">
+                    <a href="#" class="catalog-item" data-price="budget">
+                        <i class="fas fa-wallet item-icon"></i>
+                        <span class="item-text">До 60€</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-price="medium">
+                        <i class="fas fa-euro-sign item-icon"></i>
+                        <span class="item-text">60-120€</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-price="premium">
+                        <i class="fas fa-crown item-icon"></i>
+                        <span class="item-text">120-200€</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-price="luxury">
+                        <i class="fas fa-gem item-icon"></i>
+                        <span class="item-text">От 200€</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- По нотам -->
+            <div class="catalog-section fade-in delay-4">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="section-title">По нотам</div>
+                </div>
+                <div class="section-items">
+                    <a href="#" class="catalog-item" data-note="floral">
+                        <i class="fas fa-flower item-icon"></i>
+                        <span class="item-text">Цветочные</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-note="woody">
+                        <i class="fas fa-tree item-icon"></i>
+                        <span class="item-text">Древесные</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-note="citrus">
+                        <i class="fas fa-lemon item-icon"></i>
+                        <span class="item-text">Цитрусовые</span>
+                    </a>
+                    <a href="#" class="catalog-item" data-note="spicy">
+                        <i class="fas fa-pepper-hot item-icon"></i>
+                        <span class="item-text">Пряные</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Быстрые фильтры -->
+        <div class="quick-filters">
+            <a href="#" class="quick-filter active" data-filter="all">
+                <i class="fas fa-th-large filter-icon"></i>
+                Все товары
+            </a>
+            <a href="#" class="quick-filter" data-filter="new">
+                <i class="fas fa-star filter-icon"></i>
+                Новинки
+            </a>
+            <a href="#" class="quick-filter" data-filter="popular">
+                <i class="fas fa-fire filter-icon"></i>
+                Популярные
+            </a>
+            <a href="#" class="quick-filter" data-filter="sale">
+                <i class="fas fa-percentage filter-icon"></i>
+                Со скидкой
+            </a>
+            <a href="#" class="quick-filter" data-filter="limited">
+                <i class="fas fa-crown filter-icon"></i>
+                Лимитированные
+            </a>
+        </div>
+
+        <!-- Статистика -->
+        <div class="catalog-stats">
+            <div class="stat-item">
+                <div class="stat-value">36</div>
+                <div class="stat-label">Ароматов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">8</div>
+                <div class="stat-label">Коллекций</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">15</div>
+                <div class="stat-label">Новых</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Брендов</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Секция товаров -->
+    <section class="catalog-section-main" id="catalog">
+        <div class="container">
+            <h2 class="section-title">Наши ароматы</h2>
+            
+            <div class="filter-bar">
+                <div class="filter-tags">
+                    <button class="filter-tag active" data-filter="all">Все</button>
+                    <button class="filter-tag" data-filter="women">Женские</button>
+                    <button class="filter-tag" data-filter="men">Мужские</button>
+                    <button class="filter-tag" data-filter="unisex">Унисекс</button>
+                    <button class="filter-tag" data-filter="new">Новинки</button>
+                </div>
+                <div class="sort-select">
+                    <i class="fas fa-sort-amount-down"></i>
+                    <select id="sortSelect">
+                        <option>По популярности</option>
+                        <option>По возрастанию цены</option>
+                        <option>По убыванию цены</option>
+                        <option>По названию</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="product-grid" id="productGrid">
+                <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        Аромат "Розовый сад" — это нечто невероятное! Чувствую себя королевой весь день. 
+                        Качество на высшем уровне, доставка быстрая. Обязательно буду заказывать еще!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">А</div>
+                        <div class="author-info">
+                            <h4>Власовец Д.</h4>
+                            <p>Постоянный клиент</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Гарантия подлинности</h3>
+                    <p>Все парфюмы оригинальные от производителей, с полными сертификатами качества</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставляем заказы по всей Беларуси за 2-7 дней. Бесплатная доставка от 15 BYN</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Консультация 24/7</h3>
+                    <p>Наши эксперты помогут подобрать идеальный аромат именно для вас</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Подарочная упаковка</h3>
+                    <p>Бесплатная подарочная упаковка для каждого заказа. Сделайте подарок особенным</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Perfume </h3>
+                    <p class="footer-text">
+                        Магазин элитных парфюмов, где каждый аромат — это искусство. 
+                        Мы подбираем только лучшие парфюмы, которые подчеркнут вашу индивидуальность.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Категории</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Женские парфюмы</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Мужские парфюмы</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Унисекс ароматы</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Лимитированные серии</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Наборы и пробники</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> О компании</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Доставка и оплата</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Возврат и обмен</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Конфиденциальность</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>Ksenya@blossom-perfume.by</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+375 (25) 646-34-18</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Минск, ул. Прилукская, 93</span>
+                        </li>
+                    </ul>
+                    <div class="newsletter">
+                        <h4>Подписка на новости</h4>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Ваш email">
+                            <button class="btn btn-primary btn-small">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Blossom Perfume. Все права защищены.</p>
+                <p>Сайт создан для проекта по информатике</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Контент будет загружен через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    <script>
+        // Изображения для каждого парфюма
+        const perfumeImages = [
+            {
+                id: 1,
+                main: "https://i.ebayimg.com/images/g/UBEAAOSwKLRkbk~j/s-l960.jpg",
+                gallery: [
+                    "https://i.ebayimg.com/images/g/UBEAAOSwKLRkbk~j/s-l960.jpg",
+                    "https://cdn.ime.by/UserFiles/images/catalog/Goods/3238/09453238/norm/09453238.n_0.png?s=600x800"
+                ]
+            },
+            {
+                id: 2,
+                main: "https://online-fragrance.com/wp-content/uploads/2025/03/Jimmy-Choo-I-Want-Choo-Le-Parfum-by-Jimmy-Choo-1.3oz-40-ml.jpg",
+                gallery: [
+                    "https://online-fragrance.com/wp-content/uploads/2025/03/Jimmy-Choo-I-Want-Choo-Le-Parfum-by-Jimmy-Choo-1.3oz-40-ml.jpg",
+                    "https://avatars.mds.yandex.net/get-mpic/15142316/2a00000197e3c56ef6f2e398be76c3b94020/orig"
+                ]
+            },
+            {
+                id: 6,
+                main: "https://basket-18.wbbasket.ru/vol2855/part285580/285580835/images/big/1.webp",
+                gallery: [
+                    "https://cdn1.ozone.ru/s3/multimedia-e/c600/6869749118.jpg",
+                    "https://ir.ozone.ru/s3/multimedia-1-n/6926589023.jpg"
+                ]
+            },
+            {
+                id: 3,
+                main: "https://avatars.mds.yandex.net/i?id=f8f896e8e57e3bfc12ed786495aa0808_l-3885836-images-thumbs&n=13",
+                gallery: [
+                    "https://avatars.mds.yandex.net/i?id=f8f896e8e57e3bfc12ed786495aa0808_l-3885836-images-thumbs&n=13",
+                    "https://avatars.mds.yandex.net/i?id=552ed95c35723ab6f9857123d3c02d3b_l-3873335-images-thumbs&n=13"
+                ]
+            },
+            {
+                id: 4,
+                main: "https://ir.ozone.ru/s3/multimedia-q/c600/6745912010.jpg",
+                gallery: [
+                    "https://ir.ozone.ru/s3/multimedia-q/c600/6745912010.jpg",
+                    "https://basket-15.wbbasket.ru/vol2303/part230369/230369228/images/big/1.webp"
+                ]
+            },
+            {
+                id: 5,
+                main: "https://www.p-shik.ru/images/image/marc-antoine-barrois-aldebaran.jpg",
+                gallery: [
+                    "https://www.p-shik.ru/images/image/marc-antoine-barrois-aldebaran.jpg",
+                    "https://90.img.avito.st/image/1/1.dJSNM7a42H27mhp46XZkzISR2nszklp1-5fafz2a0Hc7.mbw5j7FCrVSp94rAUBm2VHY1Z3WZCkLAGM1bqw2c8kI"
+                ]
+            }
+        ];
+
+        // Данные товаров
+        const products = [
+            {
+                id: 1,
+                name: "Розовый сад",
+                category: "Женский",
+                filter: ["women", "new"],
+                collection: "rose",
+                price: 89.99,
+                notes: ["роза", "жасмин", "ваниль"],
+                description: "Нежный и романтичный аромат, напоминающий прогулку по цветущему саду весенним утром. Идеально подходит для особых случаев.",
+                fullDescription: "Розовый сад — это сочетание нежных нот розы с теплым оттенком ванили. Стойкость до 8 часов. Идеален для романтических встреч и особых случаев.",
+                badge: "Новинка",
+                popular: true,
+                rating: 4.8,
+                volume: "50 мл",
+                season: ["весна", "лето"],
+                gender: "Женский"
+            },
+            {
+                id: 2,
+                name: "Восточная сказка",
+                category: "Женский",
+                filter: ["women"],
+                collection: "oriental",
+                price: 112.00,
+                notes: ["сандал", "пряности", "ваниль"],
+                description: "Богатый и теплый аромат, напоминающий восточные базары. Для тех, кто любит внимание.",
+                fullDescription: "Восточная сказка — это экзотический микс пряностей и древесных нот. Идеально подходит для вечерних мероприятий.",
+                badge: "Хит",
+                popular: true,
+                rating: 4.7,
+                volume: "75 мл",
+                season: ["осень", "зима"],
+                gender: "Женский"
+            },
+            {
+                id: 3,
+                name: "Ночная тайна",
+                category: "Мужской",
+                filter: ["men"],
+                collection: "noir",
+                price: 95.50,
+                notes: ["дерево", "кожа", "амбра"],
+                description: "Загадочный и чувственный аромат для уверенных в себе мужчин. Подчеркивает индивидуальность и стиль.",
+                fullDescription: "Ночная тайна создана для современных мужчин, ценящих качество и изысканность. Стойкий аромат для любого времени суток.",
+                badge: "Хит",
+                popular: true,
+                rating: 4.9,
+                volume: "100 мл",
+                season: ["круглый год"],
+                gender: "Мужской"
+            },
+            {
+                id: 4,
+                name: "Утренняя свежесть",
+                category: "Унисекс",
+                filter: ["unisex", "new"],
+                collection: "fresh",
+                price: 78.00,
+                notes: ["цитрус", "зеленый чай", "мускус"],
+                description: "Освежающий и бодрящий аромат, который подарит энергию на весь день. Подходит для ежедневного использования.",
+                fullDescription: "Утренняя свежесть — идеальный выбор для начала дня. Легкие цитрусовые ноты бодрят и заряжают позитивом.",
+                badge: "Новинка",
+                popular: false,
+                rating: 4.6,
+                volume: "60 мл",
+                season: ["весна", "лето"],
+                gender: "Унисекс"
+            },
+            {
+                id: 5,
+                name: "Лесная прогулка",
+                category: "Унисекс",
+                filter: ["unisex"],
+                collection: null,
+                price: 65.00,
+                notes: ["кедр", "мох", "земляные ноты"],
+                description: "Природный аромат, который перенесет вас в глубину леса. Для любителей натуральных запахов.",
+                fullDescription: "Лесная прогулка — это натуральный аромат, созданный из эфирных масел. Без искусственных добавок.",
+                badge: null,
+                popular: false,
+                rating: 4.5,
+                volume: "30 мл",
+                season: ["круглый год"],
+                gender: "Унисекс"
+            },
+            {
+                id: 6,
+                name: "Королевская роза",
+                category: "Женский",
+                filter: ["women"],
+                collection: "rose",
+                price: 145.00,
+                notes: ["роза", "фиалка", "пачули"],
+                description: "Роскошный и элегантный аромат для настоящих королев. Стойкость до 12 часов.",
+                fullDescription: "Королевская роза — это премиальный аромат для особых случаев. Создан из редких сортов роз.",
+                badge: "Премиум",
+                popular: true,
+                rating: 5.0,
+                volume: "100 мл",
+                season: ["весь год"],
+                gender: "Женский"
+            }
+        ];
+
+        // Система управления корзиной и избранным
+        class ShoppingSystem {
+            constructor() {
+                this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+                this.wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                this.init();
+            }
+
+            init() {
+                this.updateBadges();
+                this.renderCart();
+                this.renderWishlist();
+            }
+
+            addToCart(productId) {
+                const product = products.find(p => p.id === productId);
+                if (!product) return;
+
+                const existingItem = this.cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    this.cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        quantity: 1,
+                        image: this.getProductImage(productId)
+                    });
+                }
+
+                this.saveCart();
+                this.updateBadges();
+                this.renderCart();
+                this.showNotification(`${product.name} добавлен в корзину!`);
+            }
+
+            removeFromCart(productId) {
+                this.cart = this.cart.filter(item => item.id !== productId);
+                this.saveCart();
+                this.updateBadges();
+                this.renderCart();
+                this.showNotification('Товар удален из корзины!');
+            }
+
+            updateQuantity(productId, change) {
+                const item = this.cart.find(item => item.id === productId);
+                if (item) {
+                    item.quantity += change;
+                    if (item.quantity <= 0) {
+                        this.removeFromCart(productId);
+                    } else {
+                        this.saveCart();
+                        this.updateBadges();
+                        this.renderCart();
+                    }
+                }
+            }
+
+            clearCart() {
+                this.cart = [];
+                this.saveCart();
+                this.updateBadges();
+                this.renderCart();
+                this.showNotification('Корзина очищена!');
+            }
+
+            addToWishlist(productId) {
+                const product = products.find(p => p.id === productId);
+                if (!product) return;
+
+                if (!this.wishlist.find(item => item.id === productId)) {
+                    this.wishlist.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: this.getProductImage(productId)
+                    });
+                    this.saveWishlist();
+                    this.updateBadges();
+                    this.renderWishlist();
+                    this.showNotification(`${product.name} добавлен в избранное!`);
+                } else {
+                    this.showNotification('Этот товар уже в избранном!');
+                }
+            }
+
+            removeFromWishlist(productId) {
+                this.wishlist = this.wishlist.filter(item => item.id !== productId);
+                this.saveWishlist();
+                this.updateBadges();
+                this.renderWishlist();
+                this.showNotification('Товар удален из избранного!');
+            }
+
+            getCartTotal() {
+                return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            }
+
+            getCartCount() {
+                return this.cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+
+            getWishlistCount() {
+                return this.wishlist.length;
+            }
+
+            updateBadges() {
+                const cartCount = this.getCartCount();
+                const wishlistCount = this.getWishlistCount();
+                
+                document.getElementById('cartCount').textContent = cartCount;
+                document.getElementById('wishlistCount').textContent = wishlistCount;
+                document.getElementById('profileCartCount').textContent = cartCount;
+                document.getElementById('profileWishlistCount').textContent = wishlistCount;
+            }
+
+            saveCart() {
+                localStorage.setItem('cart', JSON.stringify(this.cart));
+            }
+
+            saveWishlist() {
+                localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
+            }
+
+            renderCart() {
+                const cartItems = document.getElementById('cartItems');
+                const cartTotal = document.getElementById('cartTotal');
+                const cartTotalContainer = document.querySelector('.cart-total');
+                const cartActions = document.querySelector('.cart-actions');
+                const emptyCart = cartItems.querySelector('.panel-empty');
+
+                if (this.cart.length === 0) {
+                    cartItems.innerHTML = `
+                        <div class="panel-empty">
+                            <i class="fas fa-shopping-bag"></i>
+                            <p>Ваша корзина пуста</p>
+                        </div>
+                    `;
+                    cartTotalContainer.style.display = 'none';
+                    cartActions.style.display = 'none';
+                    return;
+                }
+
+                cartItems.innerHTML = this.cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="${item.image || this.getProductImage(item.id)}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price}€</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="shoppingSystem.updateQuantity(${item.id}, -1)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="shoppingSystem.updateQuantity(${item.id}, 1)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button class="cart-item-remove" onclick="shoppingSystem.removeFromCart(${item.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                cartTotal.textContent = `${this.getCartTotal().toFixed(2)}€`;
+                cartTotalContainer.style.display = 'flex';
+                cartActions.style.display = 'flex';
+            }
+
+            renderWishlist() {
+                const wishlistItems = document.getElementById('wishlistItems');
+
+                if (this.wishlist.length === 0) {
+                    wishlistItems.innerHTML = `
+                        <div class="panel-empty">
+                            <i class="fas fa-heart"></i>
+                            <p>Ваше избранное пусто</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                wishlistItems.innerHTML = this.wishlist.map(item => `
+                    <div class="wishlist-item">
+                        <div class="wishlist-item-image">
+                            <img src="${item.image || this.getProductImage(item.id)}" alt="${item.name}">
+                        </div>
+                        <div class="wishlist-item-info">
+                            <div class="wishlist-item-name">${item.name}</div>
+                            <div class="wishlist-item-price">${item.price}€</div>
+                            <div class="wishlist-item-actions">
+                                <button class="btn btn-primary btn-small" onclick="addToCart(${item.id})">
+                                    <i class="fas fa-shopping-cart"></i> В корзину
+                                </button>
+                                <button class="wishlist-remove-btn" onclick="shoppingSystem.removeFromWishlist(${item.id})">
+                                    <i class="fas fa-trash"></i> Удалить
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            getProductImage(productId) {
+                const imageData = perfumeImages.find(img => img.id === productId);
+                return imageData ? imageData.main : null;
+            }
+
+            showNotification(message) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    right: 15px;
+                    left: 15px;
+                    background: var(--gradient-pink);
+                    color: var(--pink-deep);
+                    padding: 12px 20px;
+                    border-radius: 12px;
+                    box-shadow: var(--shadow-medium);
+                    z-index: 3000;
+                    animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    text-align: center;
+                `;
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    ${message}
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        }
+
+        // Инициализация системы
+        const shoppingSystem = new ShoppingSystem();
+
+        // DOM элементы
+        const catalogItems = document.querySelectorAll('.catalog-item');
+        const quickFilters = document.querySelectorAll('.quick-filter');
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const productGrid = document.getElementById('productGrid');
+        const goToCatalogBtn = document.getElementById('goToCatalog');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const modalClose = document.getElementById('modalClose');
+        const productModal = document.getElementById('productModal');
+
+        // Элементы управления кнопками
+        const searchBtn = document.getElementById('searchBtn');
+        const wishlistBtn = document.getElementById('wishlistBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const profileBtn = document.getElementById('profileBtn');
+
+        const searchPanel = document.getElementById('searchPanel');
+        const wishlistPanel = document.getElementById('wishlistPanel');
+        const cartPanel = document.getElementById('cartPanel');
+        const profilePanel = document.getElementById('profilePanel');
+
+        const closeSearch = document.getElementById('closeSearch');
+        const closeWishlist = document.getElementById('closeWishlist');
+        const closeCart = document.getElementById('closeCart');
+        const closeProfile = document.getElementById('closeProfile');
+
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const clearCartBtn = document.getElementById('clearCart');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const profileWishlistBtn = document.getElementById('profileWishlistBtn');
+        const profileCartBtn = document.getElementById('profileCartBtn');
+
+        // Состояние
+        let currentFilter = 'all';
+        let currentQuickFilter = 'all';
+        let activePanel = null;
+
+        // Функции для работы с изображениями
+        function getProductImage(productId) {
+            const imageData = perfumeImages.find(img => img.id === productId);
+            return imageData ? imageData.main : null;
+        }
+
+        function getProductGallery(productId) {
+            const imageData = perfumeImages.find(img => img.id === productId);
+            return imageData ? imageData.gallery : [];
+        }
+
+        // Управление панелями
+        function showPanel(panel) {
+            if (activePanel === panel) {
+                hideAllPanels();
+                return;
+            }
+
+            hideAllPanels();
+            panel.classList.add('active');
+            
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (panel === searchPanel) {
+                searchBtn.classList.add('active');
+                searchInput.focus();
+                searchInput.value = '';
+                searchResults.innerHTML = `
+                    <div class="panel-empty">
+                        <i class="fas fa-search"></i>
+                        <p>Начните вводить название аромата</p>
+                    </div>
+                `;
+            } else if (panel === wishlistPanel) {
+                wishlistBtn.classList.add('active');
+                shoppingSystem.renderWishlist();
+            } else if (panel === cartPanel) {
+                cartBtn.classList.add('active');
+                shoppingSystem.renderCart();
+            } else if (panel === profilePanel) {
+                profileBtn.classList.add('active');
+            }
+            
+            activePanel = panel;
+        }
+
+        function hideAllPanels() {
+            [searchPanel, wishlistPanel, cartPanel, profilePanel].forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            activePanel = null;
+        }
+
+        // Поиск товаров
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.innerHTML = `
+                    <div class="panel-empty">
+                        <i class="fas fa-search"></i>
+                        <p>Введите минимум 2 символа для поиска</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const results = products.filter(product => 
+                product.name.toLowerCase().includes(query) ||
+                product.description.toLowerCase().includes(query) ||
+                product.notes.some(note => note.toLowerCase().includes(query))
+            );
+
+            if (results.length === 0) {
+                searchResults.innerHTML = `
+                    <div class="panel-empty">
+                        <i class="fas fa-search"></i>
+                        <p>По запросу "${query}" ничего не найдено</p>
+                    </div>
+                `;
+                return;
+            }
+
+            searchResults.innerHTML = results.map(product => `
+                <a href="#" class="search-result-item" onclick="showProductDetails(${product.id}); hideAllPanels(); return false;">
+                    <div class="search-result-image">
+                        <img src="${getProductImage(product.id)}" alt="${product.name}">
+                    </div>
+                    <div class="search-result-info">
+                        <div class="search-result-name">${product.name}</div>
+                        <div class="search-result-price">${product.price}€</div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // Фильтрация товаров
+        function filterProducts(filter, quickFilter = 'all') {
+            currentFilter = filter;
+            currentQuickFilter = quickFilter;
+            
+            updateActiveStates();
+            
+            const filteredProducts = products.filter(product => {
+                const matchesCategory = filter === 'all' || product.filter.includes(filter);
+                const matchesQuickFilter = quickFilter === 'all' || 
+                    (quickFilter === 'new' && product.badge === 'Новинка') ||
+                    (quickFilter === 'popular' && product.popular) ||
+                    (quickFilter === 'sale' && product.price < 80) ||
+                    (quickFilter === 'limited' && product.badge === 'Премиум');
+                
+                return matchesCategory && matchesQuickFilter;
+            });
+            
+            renderProducts(filteredProducts);
+        }
+
+        // Обновление активных состояний
+        function updateActiveStates() {
+            catalogItems.forEach(item => {
+                item.classList.remove('active');
+                const filter = item.getAttribute('data-filter');
+                if (filter === currentFilter) {
+                    item.classList.add('active');
+                }
+            });
+            
+            quickFilters.forEach(filter => {
+                filter.classList.remove('active');
+                const filterType = filter.getAttribute('data-filter');
+                if (filterType === currentQuickFilter) {
+                    filter.classList.add('active');
+                }
+            });
+            
+            filterTags.forEach(tag => {
+                tag.classList.remove('active');
+                const filterType = tag.getAttribute('data-filter');
+                if (filterType === currentFilter) {
+                    tag.classList.add('active');
+                }
+            });
+        }
+
+        // Рендеринг товаров
+        function renderProducts(productsToRender) {
+            productGrid.innerHTML = '';
+            
+            if (productsToRender.length === 0) {
+                productGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <div style="font-size: 20px; color: var(--text-light); margin-bottom: 20px;">
+                            <i class="fas fa-search" style="font-size: 40px; margin-bottom: 20px; display: block;"></i>
+                            <p>Товары не найдены</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="filterProducts('all', 'all')">
+                            Показать все товары
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            productsToRender.forEach(product => {
+                const productImage = getProductImage(product.id);
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                const imageHTML = productImage ? 
+                    `<img src="${productImage}" alt="${product.name}" loading="lazy" 
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-wine-bottle\"></i></div>';">` :
+                    `<div class="image-placeholder"><i class="fas fa-wine-bottle"></i></div>`;
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                        ${imageHTML}
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">${product.category}</span>
+                        <h3 class="product-name">
+                            ${product.name}
+                            <span style="font-size: 12px; color: var(--gold-medium);">
+                                ${'★'.repeat(Math.floor(product.rating))}
+                            </span>
+                        </h3>
+                        <p class="product-desc">${product.description}</p>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-small" onclick="showProductDetails(${product.id})">
+                                <i class="fas fa-info-circle"></i> Подробнее
+                            </button>
+                            <button class="btn btn-outline btn-small" onclick="addToCart(${product.id})">
+                                <i class="fas fa-shopping-cart"></i> В корзину
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        // Показать детали товара
+        function showProductDetails(productId) {
+            const product = products.find(p => p.id === productId);
+            const gallery = getProductGallery(productId);
+            const modalBody = document.getElementById('modalBody');
+            
+            let galleryHTML = '';
+            if (gallery && gallery.length > 0) {
+                galleryHTML = `
+                    <div class="product-thumbnails" id="thumbnails-${productId}">
+                        ${gallery.map((img, index) => `
+                            <div class="thumbnail ${index === 0 ? 'active' : ''}" 
+                                 onclick="changeMainImage('${img}', this)">
+                                <img src="${img}" alt="${product.name} - фото ${index + 1}"
+                                     onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\"fas fa-wine-bottle\"></i>';">
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            const mainImage = gallery && gallery.length > 0 ? gallery[0] : getProductImage(productId);
+            const mainImageHTML = mainImage ? 
+                `<img src="${mainImage}" alt="${product.name}" id="main-modal-image">` :
+                '<div class="image-placeholder"><i class="fas fa-wine-bottle"></i></div>';
+            
+            modalBody.innerHTML = `
+                <div class="modal-gallery">
+                    <div>
+                        <div class="modal-image-container">
+                            ${mainImageHTML}
+                        </div>
+                        ${galleryHTML}
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+                            <button class="btn btn-primary" onclick="addToCart(${product.id}); productModal.classList.remove('active'); document.body.style.overflow = 'auto';">
+                                <i class="fas fa-shopping-cart"></i> Добавить в корзину
+                            </button>
+                            <button class="btn btn-outline" onclick="addToWishlist(${product.id}); productModal.classList.remove('active'); document.body.style.overflow = 'auto';">
+                                <i class="fas fa-heart"></i> В избранное
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; color: var(--pink-deep); margin-bottom: 15px;">${product.name}</h2>
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="background: var(--pink-soft); color: var(--pink-deep); padding: 6px 15px; border-radius: 20px; font-size: 12px;">${product.category}</span>
+                            <span style="color: var(--gold-medium); font-size: 16px;">
+                                ${'★'.repeat(Math.floor(product.rating))}
+                                <span style="color: var(--text-light); font-size: 13px;">(${product.rating})</span>
+                            </span>
+                        </div>
+                        <p style="color: var(--text-light); line-height: 1.6; margin-bottom: 20px; font-size: 15px;">${product.fullDescription || product.description}</p>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h3 style="font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); margin-bottom: 12px;">Ноты аромата</h3>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                ${product.notes.map(note => `
+                                    <span style="background: var(--pink-soft); color: var(--pink-deep); padding: 8px 16px; border-radius: 20px; font-size: 13px;">
+                                        <i class="fas fa-star" style="margin-right: 6px;"></i>${note}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div style="background: var(--pink-soft); padding: 20px; border-radius: 15px; border: var(--border-light);">
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 15px;">
+                                <div>
+                                    <div style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;">Объем</div>
+                                    <div style="font-size: 15px; color: var(--text-dark); font-weight: 600;">${product.volume}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;">Сезон</div>
+                                    <div style="font-size: 15px; color: var(--text-dark); font-weight: 600;">${Array.isArray(product.season) ? product.season.join(', ') : product.season}</div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 15px;">
+                                <div>
+                                    <div style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;">Цена</div>
+                                    <div style="font-size: 32px; font-weight: 700; color: var(--pink-deep);">${product.price}€</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 13px; color: var(--text-light); margin-bottom: 5px;">В наличии</div>
+                                    <div style="font-size: 15px; color: var(--pink-bold); font-weight: 600;">
+                                        <i class="fas fa-check-circle"></i> Доступно для заказа
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            productModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Смена основного изображения в галерее
+        function changeMainImage(imageUrl, clickedElement) {
+            const mainImage = document.getElementById('main-modal-image');
+            if (mainImage) {
+                mainImage.src = imageUrl;
+            }
+            
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            clickedElement.classList.add('active');
+        }
+
+        // Добавить в корзину
+        function addToCart(productId) {
+            shoppingSystem.addToCart(productId);
+        }
+
+        // Добавить в избранное
+        function addToWishlist(productId) {
+            shoppingSystem.addToWishlist(productId);
+        }
+
+        // Функция для открытия видео
+        function openPerfumeVideo() {
+            const videoUrl = "https://youtu.be/nFgDmyzO-Vk?si=46OYOmrplACdoDT7";
+            window.open(videoUrl, '_blank', 'noopener,noreferrer');
+            showNotification('Открываем видео об искусстве парфюмерии...');
+        }
+
+        // Функция для показа уведомления
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 15px;
+                left: 15px;
+                background: var(--gradient-pink);
+                color: var(--pink-deep);
+                padding: 12px 20px;
+                border-radius: 12px;
+                box-shadow: var(--shadow-medium);
+                z-index: 3000;
+                animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-align: center;
+            `;
+            notification.innerHTML = `
+                <i class="fas fa-play-circle"></i>
+                ${message}
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Находим кнопку и добавляем обработчик
+        const watchVideoBtn = document.getElementById('watchVideo');
+        if (watchVideoBtn) {
+            watchVideoBtn.addEventListener('click', openPerfumeVideo);
+        }
+
+        // Обработчики событий для кнопок
+        searchBtn.addEventListener('click', () => showPanel(searchPanel));
+        wishlistBtn.addEventListener('click', () => showPanel(wishlistPanel));
+        cartBtn.addEventListener('click', () => showPanel(cartPanel));
+        profileBtn.addEventListener('click', () => showPanel(profilePanel));
+
+        closeSearch.addEventListener('click', () => hideAllPanels());
+        closeWishlist.addEventListener('click', () => hideAllPanels());
+        closeCart.addEventListener('click', () => hideAllPanels());
+        closeProfile.addEventListener('click', () => hideAllPanels());
+
+        searchInput.addEventListener('input', performSearch);
+        clearCartBtn.addEventListener('click', () => shoppingSystem.clearCart());
+        checkoutBtn.addEventListener('click', () => {
+            if (shoppingSystem.cart.length > 0) {
+                shoppingSystem.showNotification(`Заказ на ${shoppingSystem.getCartTotal().toFixed(2)}€ оформлен!`);
+                shoppingSystem.clearCart();
+                hideAllPanels();
+            } else {
+                shoppingSystem.showNotification('Корзина пуста!');
+            }
+        });
+
+        profileWishlistBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllPanels();
+            setTimeout(() => showPanel(wishlistPanel), 10);
+        });
+
+        profileCartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllPanels();
+            setTimeout(() => showPanel(cartPanel), 10);
+        });
+
+        // Клик вне панелей закрывает их
+        document.addEventListener('click', (e) => {
+            if (activePanel && 
+                !activePanel.contains(e.target) && 
+                !searchBtn.contains(e.target) &&
+                !wishlistBtn.contains(e.target) &&
+                !cartBtn.contains(e.target) &&
+                !profileBtn.contains(e.target) &&
+                !mobileMenuBtn.contains(e.target) &&
+                !mainNav.contains(e.target)) {
+                hideAllPanels();
+            }
+        });
+
+        // Закрыть модальное окно
+        modalClose.addEventListener('click', () => {
+            productModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Закрыть модальное окно при клике вне его
+        productModal.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                productModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Обработка кликов по элементам каталога
+        catalogItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const filter = this.getAttribute('data-filter');
+                if (filter) {
+                    filterProducts(filter, currentQuickFilter);
+                    document.getElementById('catalog').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Обработка кликов по быстрым фильтрам
+        quickFilters.forEach(filter => {
+            filter.addEventListener('click', function(e) {
+                e.preventDefault();
+                const filterType = this.getAttribute('data-filter');
+                filterProducts(currentFilter, filterType);
+            });
+        });
+
+        // Обработка кликов по тегам фильтров
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                filterProducts(filter, currentQuickFilter);
+            });
+        });
+
+        // Переход к каталогу
+        goToCatalogBtn.addEventListener('click', () => {
+            document.getElementById('catalog').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Мобильное меню
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Закрыть меню при клике на ссылку
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Закрыть меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (mainNav.classList.contains('active') && 
+                !mainNav.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            filterProducts('all', 'all');
+            
+            // Плавная прокрутка для якорных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#' || href.startsWith('#') && document.querySelector(href)) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Анимация появления элементов при скролле
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.catalog-section, .feature-card, .product-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
